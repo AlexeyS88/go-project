@@ -71,6 +71,7 @@ func main() {
 
 	http.HandleFunc("/", welcomeHandler)
 	http.HandleFunc("/list", listHandler)
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.HandleFunc("/form", formHandler)
 
 	err := http.ListenAndServe(":5000", nil)
